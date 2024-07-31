@@ -4,12 +4,11 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from urllib.parse import urlparse, urlunparse, urljoin
+from virginia import check_page_availability
+
 
 def log_error(error):
     print(error)
-
-def get_http_status(url):
-    return(True)
 
 def extract_urls(text):
     """Extract all URLs from the given text."""
@@ -46,13 +45,6 @@ def is_internal_url(base_url, url):
     target_domain = urlparse(url).netloc
     return base_domain == target_domain
 
-def get_http_status(url):
-    try:
-        response = requests.head(url, timeout=10)
-        return response.status_code
-    except requests.RequestException as e:
-        return str(e)
-    
 def is_content_page(url):
     content_extensions = (
         '.php', '.pdf', '.html', '.htm', '.asp', '.aspx', '.jsp', '.jspx',
@@ -119,7 +111,6 @@ def is_non_page_link(link):
     Returns:
     tuple: Three lists of dictionaries containing the internal, external, and sitemap links, their status, and the URLs where they are found.
     """
-    from web_handlers import normalize_url, get_http_status, is_internal_url, is_content_page
 
     internal_links_data = {}
     external_links_data = {}
@@ -140,7 +131,7 @@ def is_non_page_link(link):
         for link in links:
             link_url = normalize_url(link, base_url=url, ignore_scheme=False)
             if is_internal_url(root_url, link_url) and is_content_page(link_url):
-                status = get_http_status(link_url)
+                status = check_page_availability(link_url)
                 if link_url not in internal_links_data:
                     internal_links_data[link_url] = {
                         'link': link_url,
@@ -151,7 +142,7 @@ def is_non_page_link(link):
                 if not is_sitemap:
                     crawl(link_url, current_depth + 1)
             elif not is_internal_url(root_url, link_url) and not is_sitemap:
-                status = get_http_status(link_url)
+                status = check_page_availability(link_url)
                 if link_url not in external_links_data:
                     external_links_data[link_url] = {
                         'link': link_url,
