@@ -1,4 +1,4 @@
-# my_python_module/__init__.py
+# hector/__init__.py
 
 """
 My Python Module
@@ -14,7 +14,7 @@ module
 
 __version__ = "0.1.0"
 
-from .module import some_function
+from .hector import some_function
 
 def package_function():
     """

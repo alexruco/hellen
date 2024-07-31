@@ -88,3 +88,5 @@ def helper_function():
     you might include in your module.
     """
     print("This is a helper function.")
+
+print(some_function(3,5))
