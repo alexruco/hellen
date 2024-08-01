@@ -81,14 +81,15 @@ def fetch_all_links_selenium(url, headless=True):
         print(f"Error fetching {url} using Selenium: {e}")
         return []
 
-    finally:
+    #finally:
         # Close the WebDriver
-        driver.quit()
+    #    driver.quit()
 
 # Example usage
 if __name__ == "__main__":
     url = 'https://cpyoga.com'
     headless = False  # Change this to True to run headless
+    #links = fetch_all_links_selenium(url, headless=headless)
     links = fetch_all_links_selenium(url, headless=headless)
     for link in links:
         print(f"Link: {link}")
