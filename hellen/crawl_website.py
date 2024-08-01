@@ -1,4 +1,4 @@
-# hector/web_crawler.py
+# hectot/web_crawler.py
 
 from functions import parse_sitemap, normalize_url, is_internal_url, is_content_page, is_non_page_link
 from virginia import check_page_availability
@@ -137,11 +137,11 @@ def crawl_website(root_url, crawl_depth=5, is_sitemap=False):
                         'found_at': [url]
                     })
 
-    crawl(root_url, 0)  
+    crawl(root_url, 0)
     driver.quit()
     return list(internal_links_data.values()), list(external_links_data.values()), sitemap_links_data
 
 # Example usage
 if __name__ == "__main__":
-    internal_links, external_links, sitemap_links = crawl_website("https://cpyoga.com/es/centers/", 1, False)
+    internal_links, external_links, sitemap_links = crawl_website("https://cpyoga.com/", 1, False)
     print(internal_links, external_links, sitemap_links)
