@@ -1,3 +1,4 @@
+'''
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -154,3 +155,4 @@ def is_non_page_link(link):
 
     crawl(root_url, 0)
     return list(internal_links_data.values()), list(external_links_data.values()), sitemap_links_data
+    '''
