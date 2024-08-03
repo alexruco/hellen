@@ -1,29 +1,37 @@
 from fetch_links_requests import fetch_all_links_requests
-from fetch_links_selenium import fetch_all_links_selenium
-from functions import normalize_url
+from functions import normalize_url, remove_duplicates, handle_relative_links
 from virginia import check_page_availability
 
-def fetch_all_links(baseurl):
+def fetch_all_links(base_url):
       
     #ignore www, http(s) and / at the end
-    url = normalize_url(baseurl)
+    url = normalize_url(url=base_url, base_url=None, ignore_scheme=True)
     #check if the page is availbale
     page_available = check_page_availability(url)
     
     if(page_available):
-        
-        #more efficient, request is the default method 
-        page_links = fetch_all_links_requests(url)
+        #bring all the links in the URL, as is 
+        page_links = fetch_all_links_requests(url=url)
     else:
-        #more effective, selenium is a call back
-        page_links = fetch_all_links_selenium(url)
+        #return error
+        page_links = "ERROR: base url unavailable"
     
     return page_links
 
+def handle_links(base_url, page_links):
+    absolute_links = handle_relative_links(base_url=base_url, urls=page_links)
+    normalized_urls = [normalize_url(url, base_url=None, ignore_scheme=True) for url in absolute_links]
+    unduplicated_links = remove_duplicates(input_list=normalized_urls)
+
+    clean_links_list = unduplicated_links
+    return clean_links_list
+
 # Example usage
 if __name__ == "__main__":
-    url = 'https://cpyoga.com'
-    links = fetch_all_links(url)
+    base_url = 'https://mysitefaster.com'
+    page_links = fetch_all_links(base_url=base_url)
+    links = handle_links(base_url=base_url, page_links=page_links)
+    
     for link in links:
         print(link)
 

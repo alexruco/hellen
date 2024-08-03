@@ -77,6 +77,20 @@ def parse_html(url):
         log_error(f"Failed to fetch {url}: {e}")
         return []
 
+def handle_relative_links(base_url, urls):
+    """
+    Adds the base URL to the beginning of relative links in the given list.
+
+    Args:
+    base_url (str): The base URL to be added.
+    urls (list): The list of URLs to be processed.
+
+    Returns:
+    list: A new list with absolute URLs.
+    """
+    absolute_urls = [urljoin(base_url, url) for url in urls]
+    return absolute_urls
+
 def parse_sitemap(url):
     """
     Parse an XML sitemap to extract links.
@@ -89,6 +103,24 @@ def parse_sitemap(url):
     except requests.RequestException as e:
         log_error(f"Failed to fetch {url}: {e}")
         return []
+
+def remove_duplicates(input_list):
+    """
+    Removes duplicate records from a list while preserving the original order.
+    
+    Args:
+    input_list (list): The list from which to remove duplicates.
+
+    Returns:
+    list: A new list with duplicates removed.
+    """
+    seen = set()
+    output_list = []
+    for item in input_list:
+        if item not in seen:
+            seen.add(item)
+            output_list.append(item)
+    return output_list
 
 def is_non_page_link(link):
     """
