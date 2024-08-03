@@ -1,8 +1,8 @@
+
 ## Features ✨
 
-- **Recursive Crawling**: Automatically navigates through all pages linked from a starting URL. 🌐
-- **Link Extraction**: Retrieves and categorizes both internal and external links. 🔗
-- **Follow Tag Detection**: Identifies and returns the value of the "follow" tag for each link. 🔍
+- **No recursive Crawling**: Just crawl the provided url 🌐
+- **Link Extraction**: Retrieves both internal and external links. 🔗
 
 ## Installation 💻
 
@@ -52,3 +52,6 @@ We welcome contributions from the community! Here’s how you can get involved:
 ## License 📄
 
 This project is licensed under the Apache License 2.0. Feel free to use, modify, and distribute this software in accordance with the terms outlined in the [LICENSE](LICENSE) file.
+
+Named in honor of Ellen MacArthur https://en.wikipedia.org/wiki/Ellen_MacArthur
+
