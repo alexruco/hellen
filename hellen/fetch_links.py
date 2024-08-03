@@ -1,17 +1,19 @@
+#fetch_links.py
+
 from fetch_links_requests import fetch_all_links_requests
 from functions import normalize_url, remove_duplicates, handle_relative_links
 from virginia import check_page_availability
 
-def fetch_all_links(base_url):
+def fetch_all_links(base_url, sitemap_crawl=False):
       
     #ignore www, http(s) and / at the end
-    url = normalize_url(url=base_url, base_url=None, ignore_scheme=True)
+    normalized_base_url = normalize_url(url=base_url, base_url=None, ignore_scheme=True)
     #check if the page is availbale
-    page_available = check_page_availability(url)
+    page_available = check_page_availability(normalized_base_url)
     
     if(page_available):
         #bring all the links in the URL, as is 
-        page_links = fetch_all_links_requests(url=url)
+        page_links = fetch_all_links_requests(url=normalized_base_url,sitemap_crawl=sitemap_crawl)
     else:
         #return error
         page_links = "ERROR: base url unavailable"
@@ -29,7 +31,7 @@ def handle_links(base_url, page_links):
 # Example usage
 if __name__ == "__main__":
     base_url = 'https://mysitefaster.com'
-    page_links = fetch_all_links(base_url=base_url)
+    page_links = fetch_all_links(base_url=base_url, sitemap_crawl=False)
     links = handle_links(base_url=base_url, page_links=page_links)
     
     for link in links:
