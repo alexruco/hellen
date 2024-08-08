@@ -1,4 +1,4 @@
-#fetch_links.py
+#main.py
 
 from fetch_links_requests import fetch_all_links_requests
 from functions import normalize_url, remove_duplicates, handle_relative_links

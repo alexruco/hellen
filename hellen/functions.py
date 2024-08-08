@@ -31,6 +31,7 @@ def remove_duplicates(input_list):
             seen.add(item)
             output_list.append(item)
     return output_list
+
 def handle_relative_links(base_url, urls):
     """
     Adds the base URL to the beginning of relative links in the given list.

@@ -14,7 +14,7 @@ module
 
 __version__ = "0.1.0"
 
-from .crawl_website import some_function
+from .main import fetch_all_links
 
 def package_function():
     """
