@@ -30,7 +30,7 @@ def handle_links(base_url, page_links):
 
 # Example usage
 if __name__ == "__main__":
-    base_url = 'https://mysitefaster.com'
+    base_url = 'https://smileup.pt'
     page_links = fetch_all_links(base_url=base_url)
     links = handle_links(base_url=base_url, page_links=page_links)
     
