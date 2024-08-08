@@ -1,6 +1,6 @@
 # hellen/main.py
 from hellen.fetch_links_requests import fetch_all_links_requests
-from hellen.functions import normalize_url, remove_duplicates, handle_relative_links
+from hellen.utils import normalize_url, remove_duplicates, handle_relative_links
 from virginia import check_page_availability
 
 def fetch_all_links(base_url):

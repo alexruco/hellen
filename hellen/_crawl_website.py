@@ -1,6 +1,6 @@
 # hectot/web_crawler.py
 
-from functions import parse_sitemap, normalize_url, is_internal_url, is_content_page, is_non_page_link
+from hellen.hellen.utils import parse_sitemap, normalize_url, is_internal_url, is_content_page, is_non_page_link
 from virginia import check_page_availability
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service

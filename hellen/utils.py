@@ -46,3 +46,17 @@ def handle_relative_links(base_url, urls):
     absolute_urls = [urljoin(base_url, url) for url in urls]
     return absolute_urls
 
+def is_internal_link(base_url, link):
+    """
+    Determine if a given link is internal to the base URL.
+
+    Parameters:
+    base_url (str): The base URL.
+    link (str): The link to check.
+
+    Returns:
+    bool: True if the link is internal, False otherwise.
+    """
+    base_domain = urlparse(base_url).netloc
+    link_domain = urlparse(link).netloc
+    return base_domain == link_domain
