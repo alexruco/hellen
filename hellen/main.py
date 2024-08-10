@@ -3,6 +3,11 @@ from hellen.fetch_links_requests import fetch_all_links_requests
 from hellen.utils import normalize_url, remove_duplicates, handle_relative_links
 from virginia import check_page_availability
 
+def links_on_page(base_url):
+    page_links = fetch_all_links(base_url)
+    cleaned_links = handle_links(base_url, page_links)
+    return cleaned_links
+
 def fetch_all_links(base_url):
     # Ignore www, http(s), and / at the end
     normalized_base_url = normalize_url(url=base_url, base_url=None, ignore_scheme=True)
