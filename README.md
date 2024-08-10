@@ -17,10 +17,10 @@ pip install GIT+https://github.com/alexruco/hellen/
 Here's a quick example to get you started:
 
 ```python
-from hellen import crawler
+from hellen import hellen
 ```
 # Example usage
-result = crawler.crawl('https://example.com')
+result = hellen.links_on_page('https://example.com')
 print(result)
 
 ## Running Tests 🧪
