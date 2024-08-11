@@ -3,6 +3,7 @@
 
 - **No recursive Crawling**: Just crawl the provided url 🌐
 - **Link Extraction**: Retrieves both internal and external links. 🔗
+- **links_on_page(url)**:Retrieves links from a given url
 
 ## Installation 💻
 
@@ -17,7 +18,7 @@ pip install GIT+https://github.com/alexruco/hellen/
 Here's a quick example to get you started:
 
 ```python
-from hellen import hellen
+from hellen import links_on_page
 ```
 # Example usage
 result = hellen.links_on_page('https://example.com')

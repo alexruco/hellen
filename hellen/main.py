@@ -51,6 +51,6 @@ if __name__ == "__main__":
     if not page_links:
         print(f"No links to process for {base_url}")
     else:
-        links = handle_links(base_url=base_url, page_links=page_links)
+        links = links_on_page(base_url=base_url)
         for link in links:
             print(link)
