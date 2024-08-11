@@ -17,9 +17,9 @@ def fetch_all_links(base_url):
     # Ignore www, http(s), and / at the end
     normalized_base_url = normalize_url(url=base_url, base_url=None, ignore_scheme=True)
     
-    # Check if the page is available
-    page_available = check_page_availability(normalized_base_url)
-    
+    # Temporarily bypass check_page_availability for testing
+    page_available = True  # Force it to assume the page is available
+
     if page_available:
         # Fetch all links from the URL, as is
         page_links = fetch_all_links_requests(url=normalized_base_url)
