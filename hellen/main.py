@@ -1,16 +1,35 @@
 # hellen/main.py
 from hellen.fetch_links_requests import fetch_all_links_requests
-from hellen.utils import normalize_url, remove_duplicates, handle_relative_links
+from hellen.utils import normalize_url, remove_duplicates, handle_relative_links, is_internal_link
 from virginia import check_page_availability
 
-def links_on_page(base_url):
-    page_links = fetch_all_links(base_url)
+def internal_links_on_page(url):
+    """
+    Retrieve only the internal links from a given page.
+
+    Parameters:
+    base_url (str): The base URL from which to retrieve the internal links.
+
+    Returns:
+    list: A list of internal links found on the page.
+    """
+    # Fetch all links on the page
+    all_links = links_on_page(url)
+    
+    # Filter out only the internal links
+    internal_links = [link for link in all_links if is_internal_link(url, link)]
+    
+    return internal_links
+
+
+def links_on_page(url):
+    page_links = fetch_all_links(url)
     
     # If fetch_all_links returns None or an empty list, return an empty list
     if not page_links:
         return []
     
-    cleaned_links = handle_links(base_url, page_links)
+    cleaned_links = handle_links(url, page_links)
     return cleaned_links
 
 def fetch_all_links(base_url):

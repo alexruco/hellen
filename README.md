@@ -4,6 +4,7 @@
 - **No recursive Crawling**: Just crawl the provided url 🌐
 - **Link Extraction**: Retrieves both internal and external links. 🔗
 - **links_on_page(url)**:Retrieves links from a given url
+- **internal_links_on_page(url)**:Retrieves links from a given url
 
 ## Installation 💻
 
