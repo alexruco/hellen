@@ -21,6 +21,24 @@ def internal_links_on_page(url):
     
     return internal_links
 
+def external_links_on_page(url):
+    """
+    Retrieve only the internal links from a given page.
+
+    Parameters:
+    base_url (str): The base URL from which to retrieve the internal links.
+
+    Returns:
+    list: A list of internal links found on the page.
+    """
+    # Fetch all links on the page
+    all_links = links_on_page(url)
+    
+    # Filter out only the internal links
+    external_links = [link for link in all_links if not is_internal_link(url, link)]
+    
+    return external_links
+
 
 def links_on_page(url):
     page_links = fetch_all_links(url)
