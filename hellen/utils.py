@@ -1,5 +1,4 @@
 # hellen/utils.py
-
 from urllib.parse import urlparse, urlunparse, urljoin
 
 def normalize_url(url, base_url=None, ignore_scheme=True):
@@ -42,5 +41,5 @@ def filter_links(links):
     Returns:
     list: A filtered list of URLs.
     """
-    unwanted_extensions = ('.xml', '.jpg', '.jpeg', '.png', '.gif', '.pdf', '.doc', '.docx', '.xls', '.xlsx')
-    return [link for link in links if not link.endswith(unwanted_extensions)]
+    unwanted_extensions = ('.xml', '.jpg', '.jpeg', '.png', '.gif', '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.mp3', '.mp4', '.wav', '.avi', '.mkv')
+    return [link for link in links if not link.lower().endswith(unwanted_extensions)]

@@ -63,7 +63,7 @@ def fetch_all_links(url):
     Fetch all the links from a given base URL.
 
     Parameters:
-    base_url (str): The base URL from which to fetch the links.
+    url (str): The base URL from which to fetch the links.
 
     Returns:
     list: A list of links found on the page.
@@ -98,20 +98,20 @@ def handle_links(base_url, page_links):
     list: A cleaned and filtered list of links.
     """
     absolute_links = handle_relative_links(base_url=base_url, urls=page_links)
-    normalized_urls = [normalize_url(url, base_url=None, ignore_scheme=True) for url in absolute_links]
-    filtered_urls = filter_links(normalized_urls)
-    unduplicated_links = remove_duplicates(input_list=filtered_urls)
+    filtered_urls = filter_links(absolute_links)  # Filter before normalization to avoid processing unnecessary URLs
+    normalized_urls = [normalize_url(url, base_url=None, ignore_scheme=True) for url in filtered_urls]
+    unduplicated_links = remove_duplicates(input_list=normalized_urls)
     
     return unduplicated_links
 
 # Example usage
 if __name__ == "__main__":
-    base_url = 'https://orca.ricarela.com/'
-    page_links = external_links_on_page(url=base_url)
+    base_url = 'https://orca.ricarela.com/produto/controle-de-estoque/'
+    page_links = internal_links_on_page(url=base_url)
     
     if not page_links:
         print(f"No links to process for {base_url}")
     else:
-        links = external_links_on_page(url=base_url)
+        links = internal_links_on_page(url=base_url)
         for link in links:
             print(link)
